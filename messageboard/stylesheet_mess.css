@@ -1,0 +1,12 @@
+html {
+    background-image: url("img/messbg.gif");
+}
+div {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+tr {
+	font-size:25px;
+	font-weight: bold;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script src="jquery-3.1.1.min.js"></script>
+<script language="JavaScript" src="game/highscore.js"></script>
+<script language="JavaScript" src="game/game.js"></script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.php">PaulsDemo</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="index.php">Home</a></li>
+                <li class="active"><a href="">Demo</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="container">
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="pill" href="#svg" style="font-size: 20px">SVG game</a></li>
+        <li style="font-size: 20px"><a data-toggle="pill" href="#chat">Chatroom</a></li>
+        <li style="font-size: 20px"><a data-toggle="pill" href="#anapp">Android App</a></li>
+        <li style="font-size: 20px"><a data-toggle="pill" href="#jq">JQuery/Database</a></li>
+        <li style="font-size: 20px"><a data-toggle="pill" href="#pyg">Pygame</a></li>
+        <li style="font-size: 20px"><a data-toggle="pill" href="#phy">Physics Simulations</a></li>
+
+    </ul>
+  <br/><br/>
+
+  <div class="tab-content">
+    <div id="svg" class="tab-pane fade in active">
+        <iframe frameborder="0" id="frame" src="game/game.svg" width="800" height="600"></iframe>
+    </div>
+    <div id="chat" class="tab-pane fade">
+        <iframe frameborder="0" id="frame" src="messageboard/chatroom.html" width="830" height="800"></iframe>
+    </div>
+    <div id="anapp" class="tab-pane fade">
+        <iframe frameborder="0" id="frame" src="app/app.html" width="1000" height="1100"></iframe>
+    </div>
+    <div id="jq" class="tab-pane fade">
+        <iframe frameborder="0" id="frame" src="autocomplete/autocomplete.php" width="1000" height="700"></iframe>
+    </div>
+    <div id="pyg" class="tab-pane fade">
+        <iframe frameborder="0" id="frame" src="pygame/pygame.html" width="1000" height="900"></iframe>
+    </div>
+    <div id="phy" class="tab-pane fade">
+        <iframe frameborder="0" id="frame" src="physics/phys.html" width="1000" height="1200"></iframe>
+    </div>
+  </div>
+</div>
+
+
+
+    <span style="font-size: 10px; color: Grey">This website is made for educational purpose only. I DO NOT own the image, sound effect or other resources on this website.</span>
+
+</body>
+</html>

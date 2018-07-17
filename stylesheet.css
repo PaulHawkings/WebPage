@@ -1,0 +1,11 @@
+div {
+	text-align:center;
+}
+
+body {
+	background-image: url("img/bodybackground.png");
+}
+
+.container {
+    width:80%;
+}

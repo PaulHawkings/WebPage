@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<script type="text/javascript">
+	function loadDoc() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				myFunction(this);
+			}
+		};
+		xhttp.open("GET", "orders.xml", true);
+		xhttp.send();
+	}
+	function myFunction(xml) {
+
+		var list = document.getElementById("orderlist");
+
+		while (list.rows.length>1){
+			list.deleteRow(1);
+		}
+
+		var orders = xml.responseXML.getElementsByTagName("order");
+		for (i = 0; i<orders.length; ++i){
+			var tr = document.createElement("tr");
+			tr.className  = "orders";
+			var td = document.createElement("td");
+			td.className  = "orders";
+			td.innerHTML = orders[i].innerHTML;
+			tr.appendChild(td);
+			list.appendChild(tr);
+		}
+		setTimeout(loadDoc(),500);
+	}
+</script>
+</head>
+<body onload="loadDoc()">
+	<div>	
+		<p>This is a food ordering/browsing app demo</p>
+	</div>
+
+	<table>
+		<tr>
+			<td>
+				<iframe width="750" height="600" src="https://www.youtube.com/embed/DlRNKmb1LzA"></iframe>
+			</td>
+			<td>
+				<table id="orderlist" class="orders">
+					<tr class="orders" >
+						<td class="orders" style="font-weight: b">Current Orders</td>
+					</tr>
+					<tr class="orders">
+						<td class="orders">TEST1</td>
+					</tr>
+					<tr class="orders">
+						<td class="orders">TEST2</td>
+					</tr>
+					<tr class="orders">
+						<td class="orders">TEST3</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<br/><br/>
+
+	<div>	
+		<a href="FuriousFastFood.apk" target="_blank">Download apk</a>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="1.1"
+     baseProfile="full"
+     width="40" height="40">
+
+<style type="text/css">
+	.rb {fill:black;}
+	.rh {fill:LawnGreen ;}
+	.rw {fill:White;}
+	.rp {fill:DarkMagenta ;}
+	.rg {fill:DimGray;}
+
+</style>
+
+<path d="M10,0 h17.5 v2.5 h2.5 v2.5 h2.5 v2.5 h2.5 v5 h2.5 v5 h-2.5 v2.5 h2.5 v2.5 h2.5 v5 h-2.5 v2.5 h-2.5 v2.5 h2.5 v2.5 h2.5 v5 h-15 v-2.5 h-2.5 v-2.5 h-5 v2.5 h-2.5 v2.5 h-15 v-5 h2.5 v-2.5 h5 v-2.5 h-5 v-2.5 h-2.5 v-7.5 h2.5 v-2.5 h2.5 v-2.5 h-2.5 v-7.5 h2.5 v-2.5 h2.5 v-2.5 h2.5 v-2.5 z"
+style="fill:black"/>
+
+<path d="M10,2.5 h17.5 v2.5 h2.5 v2.5 h2.5 v5 h2.5 v5 h-2.5 v2.5 h-2.5 v-2.5 h-22.5 v-2.5 h-2.5 v-7.5 h2.5 v-2.5 h2.5 v-2.5 z" style="fill:LawnGreen"/>
+
+<path d="M12.5,5 h2.5 v2.5 h10 v2.5 h2.5 v7.5 h-2.5 v2.5 h-2.5 v2.5 h-7.5 v-2.5 h-2.5 v-2.5 h-2.5 v-5 h-2.5 v-2.5 h2.5 v-2.5 h2.5 z" style="fill:White"/>
+
+<path d="M10,7.5 h7.5 v7.5 h-5 v-2.5 h2.5 v-2.5 h-2.5 v2.5 h-2.5 v-5 z"
+style="fill:black"/>
+
+<path d="M22.5,7.5 h2.5 v2.5 h2.5 v5 h-7.5 v-5 h2.5 v2.5 h2.5 v-2.5 h-2.5 z"
+style="fill:black"/>
+
+<path d="M12.5,15 h2.5 v2.5 h7.5 v-2.5 h2.5 v2.5 h-2.5 v2.5 h-7.5 v-2.5 h-2.5 v-2.5z"
+style="fill:red"/>
+
+<path d="M2.5,20 h2.5 v-2.5 h2.5 v5 h2.5 v-2.5 h2.5 v2.5 h-2.5 v5 h-7.5 v-7.5z"
+style="fill:DarkMagenta"/>
+
+<path d="M27.5,17.5 h2.5 v2.5 h5 v2.5 h2.5 v5 h-5 v-5 h-2.5 v5 h2.5 v5 h-5 v2.5 h-5 v-2.5 h-5 v2.5 h-5 v-2.5 h-2.5 v-5 h2.5 v-2.5 h2.5 v2.5 h2.5 v2.5 h7.5 v-2.5 h2.5z"
+style="fill:DarkMagenta"/>
+
+<path d="M12.5,22.5 h2.5 v2.5 h7.5 v-2.5 h2.5 v-2.5 h2.5 v7.5 h-2.5 v2.5 h-7.5 v-2.5 h-2.5 v-2.5 h-2.5 z"
+style="fill:ForestGreen"/>
+
+<path d="M20,25 h2.5 v2.5 h-2.5 z"
+style="fill:DarkOrchid"/>
+ 
+<path d="M7.5,32.5 h5 v2.5 h2.5 v2.5 h-12.5 v-2.5 h5 z"
+style="fill:DimGray"/>
+
+<path d="M27.5,32.5 h5 v2.5 h5 v2.5 h-12.5 v-2.5 h2.5 z"
+style="fill:DimGray"/>
+
+<text x="1" y="5" style="font-size:8px;font-weight:bold;fill:FireBrick;stroke:red;stroke-width:0.2">HA<animateMotion path="M1,5 L3,32 L1,5" dur="3s" repeatCount="indefinite"/></text>
+
+<text x="12" y="32" style="font-size:8px;font-weight:bold;fill:FireBrick;stroke:red;stroke-width:0.2">HA<animateMotion path="M12,5 L10,-27 L12,5" dur="3s" repeatCount="indefinite"/></text>
+</svg>

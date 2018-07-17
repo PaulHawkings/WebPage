@@ -1,0 +1,16 @@
+p {
+	text-align: center;
+	font-size: 50px;
+	color:CornflowerBlue;
+}
+
+div {
+	text-align:center;
+}
+
+a:link {
+	color: Aqua;
+	font-size: 30px;
+	padding: 5px 10px 5px 10px;
+	background-size: 100% 100%;
+    background-repeat: no-repeat; }

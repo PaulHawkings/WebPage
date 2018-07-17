@@ -1,0 +1,20 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="1.1"
+     baseProfile="full"
+     width="40" height="50">
+
+<path d="M15,0 h2.5 v2.5 h2.5 v2.5 h5 v-2.5 h2.5 v-2.5 h2.5 v2.5 h2.5 v5 h2.5 v7.5 h2.5 v2.5 h2.5 v7.5 h-2.5 v2.5 h-2.5 v2.5 h-2.5 v2.5 h5 v2.5 h2.5 v5 h-2.5 v2.5 h-10 v-2.5 h-2.5 v-2.5 h-2.5 v-2.5 h-5 v2.5 h-2.5 v2.5 h-2.5 v2.5 h-2.5 v2.5 h-7.5 v-2.5 h-2.5 v-5 h2.5 v-2.5 h2.5 v-2.5 h2.5 v-7.5 h-2.5 v-2.5 h-2.5 v-2.5 h-2.5 v-7.5 h2.5 v-2.5 h5 v2.5 h2.5 v-5 h2.5 v-5 h2.5 z" style="fill:black"/>
+<path d="M15,2.5 h2.5 v2.5 h2.5 v2.5 h5 v-2.5 h2.5 v-2.5 h2.5 v5 h2.5 v12.5 h-2.5 v2.5 h-12.5 v-2.5 h-2.5 v-2.5 h-2.5 v-10 h2.5 z" style="fill:DimGray"/>
+<path d="M2.5,12.5 h5 v2.5 h2.5 v2.5 h2.5 v2.5 h2.5 v2.5 h-5 v2.5 h-2.5 v-2.5 h-2.5 v-2.5 h-2.5 z" style="fill:DimGray"/>
+<path d="M15,22.5 h2.5 v2.5 h10 v2.5 h2.5 v-5 h2.5 v-2.5 h2.5 v-2.5 h2.5 v7.5 h-2.5 v2.5 h-5 v5 h-20 v-7.5 h5 z" style="fill:DimGray"/>
+<path d="M7.5,32.5 h5 v2.5 h2.5 v2.5 h-2.5 v2.5 h-2.5 v2.5 h-7.5 v-5 h2.5 v-2.5 h2.5  z" style="fill:DimGray"/>
+<path d="M27.5,32.5 h5 v2.5 h5 v5 h-10 v-2.5 h-2.5 v-2.5 h2.5 z" style="fill:DimGray"/>
+<rect  width="2.5" height="2.5" x="20" y="10" style="fill:Silver"/>
+<rect  width="2.5" height="2.5" x="27.5" y="10"  style="fill:Silver"/>
+<path d="M20,15 h12.5 v5 h-2.5 v2.5 h-12.5 v-5 h2.5z" style="fill:NavajoWhite"/>
+<rect width="7.5" height="2.5" x="22.5" y="17.5" style="fill:SlateGray"/>
+<rect class = "ry" width="20" height="2.5" x="10" y="30" style="fill:Gold"/>
+
+</svg>

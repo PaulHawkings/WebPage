@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<chatroom>
+  <messages><message name="paul" color="magenta">HI</message><message name="Paul2" color="black">123</message><message name="123" color="black">&lt;b&gt;J&lt;b&gt;</message><message name="123" color="black">&lt;b&gt;J&lt;/b&gt;</message><message name="123" color="black">&lt;p&gt;J&lt;/p&gt;</message></messages>
+</chatroom>

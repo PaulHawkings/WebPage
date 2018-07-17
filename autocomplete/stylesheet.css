@@ -1,0 +1,42 @@
+.match-character {
+	color: blue;
+}
+.remainingch{
+	font-weight: bold;
+
+}
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.category{
+	color: red;
+	padding: .2em .4em;
+	margin: .8em 0 .2em;
+	line-height: 1.5;
+}
+label{
+	color: DeepSkyBlue;
+	font-size: 30px;
+	font-weight: bold;
+}
+input{
+	width: 300px;
+	height: 25px;
+	font-size: 20px;
+}
+p{
+	color: DeepSkyBlue;
+	font-size: 30px;
+	font-weight: bold;
+}
+.text{
+	color: DeepSkyBlue;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+body{
+	background-image: url("database.png");
+}

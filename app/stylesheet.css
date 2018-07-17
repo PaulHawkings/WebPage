@@ -1,0 +1,29 @@
+p {
+	text-align: center;
+	font-size: 50px;
+	color:CornflowerBlue;
+}
+
+div {
+	text-align:center;
+}
+
+a:link {
+	color: Aqua;
+	font-size: 30px;
+	padding: 5px 10px 5px 10px;
+	background-size: 100% 100%;
+    background-repeat: no-repeat; }
+
+.orders{
+	color:CornflowerBlue;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 25px;
+	margin-bottom: 200px;
+	margin-left: 20px;
+    border: 1px solid black;
+    border-color: CornflowerBlue;
+
+}

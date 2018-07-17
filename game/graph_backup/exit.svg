@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="1.1"
+     baseProfile="full"
+     width="60" height="80">
+
+<rect x="1" y="1" width="58" height="20" style="fill:yellow;stroke:black"/>
+<text x="9" y="17" style="fill:black;font-size:20px;font-weight: bold">EXIT</text>
+<rect x="1" y="21" width="58" height="60" style="fill:grey;stroke:black"/>
+<path d="M1,80 L10,30 h40 L59,80
+     z" style="fill:DarkSlateGray"/>
+<g id = "door" visibility="visible">
+	<rect x="1" y="21" width="28" height="58" style="fill:green;stroke:black;"/>
+	<rect x="30" y="21" width="29" height="58" style="fill:green;stroke:black;"/>
+	<circle cx="25" cy="50" r="2" style="fill:silver;stroke:grey"/>
+	<circle cx="34" cy="50" r="2" style="fill:silver;stroke:grey"/>
+</g>
+</svg>

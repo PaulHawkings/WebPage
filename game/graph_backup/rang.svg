@@ -1,0 +1,17 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="1.1"
+     baseProfile="full"
+     width="40" height="40">
+
+<def>
+<g id="rang">
+<animateTransform  attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="2s" repeatDur="indefinite"/>
+<path transform="translate(0,-1)" d="M0,24 L8,16 L20,24 L32,16 L40,24 L32,20 L20,24 L8,20 z" style="fill:silver"/>
+<circle cx="20" cy="20" r="3.2" style="fill:black"/>
+</g>
+</def>
+<use xlink:href="#rang"/>
+<animateTransform  attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="2s" repeatDur="indefinite"/>
+</svg>

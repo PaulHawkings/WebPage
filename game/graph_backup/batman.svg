@@ -1,0 +1,78 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     version="1.1"
+     baseProfile="full"
+     width="40" height="40">
+
+<style type="text/css">
+	.rb {fill:black;}
+	.rg {fill:DimGray;}
+	.rf {fill:NavajoWhite;}
+	.ry {fill:Gold;}
+	.re {fill:Silver;}
+	.rm {fill:SlateGray;}
+</style>
+
+<!-- <def>
+<g id="1">
+<rect width="2" height="2" x="0" y="0" style="fill:black;stroke:black"/>
+</g>
+<g id="2">
+<rect width="2" height="2" x="0" y="0" style="fill:black;stroke:black"/>
+</g>
+</def> -->
+
+<rect class = "rb" width="2.5" height="2.5" x="15" y="0"/>
+<rect class = "rb" width="2.5" height="2.5" x="27.5" y="0"/>
+<rect class = "rb" width="7.5" height="2.5" x="12.5" y="2.5"/>
+<rect class = "rb" width="7.5" height="2.5" x="25" y="2.5"/>
+<rect class = "rb" width="20" height="2.5" x="12.5" y="5"/>
+<rect class = "rb" width="25" height="12.5" x="10" y="7.5"/>
+<rect class = "rb" width="30" height="5" x="5" y="17.5"/>
+<rect class = "rb" width="35" height="2.5" x="2.5" y="20"/>
+<rect class = "rb" width="40" height="5" x="0" y="22.5"/>
+<rect class = "rb" width="35" height="2.5" x="2.5" y="27.5"/>
+<rect class = "rb" width="27.5" height="2.5" x="7.5" y="30"/>
+<rect class = "rb" width="35" height="2.5" x="2.5" y="32.5"/>
+<rect class = "rb" width="17.5" height="2.5" x="0" y="35"/>
+<rect class = "rb" width="17.5" height="2.5" x="22.5" y="35"/>
+<rect class = "rb" width="15" height="2.5" x="0" y="37.5"/>
+<rect class = "rb" width="15" height="2.5" x="25" y="37.5"/>
+
+<rect class = "rg" width="2.5" height="2.5" x="15" y="2.5"/>
+<rect class = "rg" width="2.5" height="2.5" x="27.5" y="2.5"/>
+<rect class = "rg" width="5" height="2.5" x="15" y="5"/>
+<rect class = "rg" width="5" height="2.5" x="25" y="5"/>
+<rect class = "rg" width="20" height="10" x="12.5" y="7.5"/>
+<rect class = "rg" width="2.5" height="2.5" x="10" y="17.5"/>
+<rect class = "rg" width="17.5" height="2.5" x="15" y="17.5"/>
+<rect class = "rg" width="10" height="2.5" x="5" y="20"/>
+<rect class = "rg" width="2.5" height="2.5" x="32.5" y="20"/>
+<rect class = "rg" width="7.5" height="2.5" x="2.5" y="22.5"/>
+<rect class = "rg" width="5" height="2.5" x="12.5" y="22.5"/>
+<rect class = "rg" width="7.5" height="2.5" x="30" y="22.5"/>
+<rect class = "rg" width="5" height="2.5" x="2.5" y="25"/>
+<rect class = "rg" width="17.5" height="2.5" x="10" y="25"/>
+<rect class = "rg" width="7.5" height="2.5" x="30" y="25"/>
+<rect class = "rg" width="20" height="2.5" x="10" y="27.5"/>
+<rect class = "rg" width="5" height="2.5" x="7.5" y="32.5"/>
+<rect class = "rg" width="5" height="2.5" x="27.5" y="32.5"/>
+<rect class = "rg" width="12.5" height="2.5" x="2.5" y="35"/>
+<rect class = "rg" width="12.5" height="2.5" x="25" y="35"/>
+
+<rect class = "re" width="2.5" height="2.5" x="20" y="10"/>
+<rect class = "re" width="2.5" height="2.5" x="27.5" y="10"/>
+
+<rect class = "rf" width="12.5" height="2.5" x="20" y="15"/>
+<rect class = "rf" width="15" height="2.5" x="17.5" y="17.5"/>
+<rect class = "rf" width="12.5" height="2.5" x="17.5" y="20"/>
+
+<rect class = "ry" width="20" height="2.5" x="12.5" y="30"/>
+
+<rect class = "rm" width="7.5" height="2.5" x="22.5" y="17.5"/>
+
+
+
+
+</svg>
