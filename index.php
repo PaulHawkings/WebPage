@@ -38,7 +38,8 @@ else
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="">Home</a></li>
-                <li ><a href="demo.html">Demo</a></li>
+                <li ><a href="blockchain.html">Blockchain</a></li>
+                <li ><a href="demo.html">Miscellaneous</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
