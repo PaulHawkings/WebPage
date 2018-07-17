@@ -4,6 +4,14 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script language="JavaScript" src="blockchain/blockchain.js"></script>
+    <script language="JavaScript">
+        var t = new Blockchain();
+        t.pushBlock(new Block(new Date().toLocaleString(), new Transaction("Alice", "Bob", 10)));
+        t.pushBlock(new Block(new Date().toLocaleString(), new Transaction("Bob", "Carol", 5)));
+        t.pushBlock(new Block(new Date().toLocaleString(), new Transaction("Carol", "Alice", 5)));
+        t.printAll();
+    </script>
 </head>
 
 <body>
