@@ -107,6 +107,9 @@ function SHA256(s){
     return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
 }
 
+/* Constants */
+var MININGDIFFICUTLY = 4;   // Warning: CPU performance will be decreased if the difficulty is larger than 4
+
 /* Main Data Structure */
 class Transaction
 {
@@ -131,16 +134,26 @@ class Block
         this.transaction = transaction;
         this.previousHash = previousHash;
         this.hash = this.calHash();
+        this.nonce = 0;
     }
 
     calHash()
     {
-        return SHA256(this.timestamp + this.transaction + this.previousHash);
+        return SHA256(this.timestamp + this.transaction + this.previousHash + this.nonce);
     }
 
     toString()
     {
         return "Timestamp: " + this.timestamp + ", From: " + this.transaction.from + " to " + this.transaction.to + ", value: " + this.transaction.value;
+    }
+
+    proofOfWork(difficulty)
+    {
+        while(this.hash.substring(0, difficulty) != Array(difficulty + 1).join("0"))
+        {
+            this.nonce += 1;
+            this.hash = this.calHash();
+        }
     }
 }
 
@@ -149,10 +162,15 @@ class Blockchain
     constructor()
     {
         this.head = [new Block("1/1/1970", new Transaction("", "", ""), "")];
+        this.miningDifficulty = MININGDIFFICUTLY;
     }
 
     pushBlock(block)
     {
+        if (block.hash.substring(0, this.miningDifficulty) != Array(this.miningDifficulty + 1).join("0"))
+        {
+            console.log("Proof of work failed!");
+        }
         this.head.push(new Block(block.timestamp, block.transaction, this.head[this.head.length - 1].hash));
     }
 
@@ -165,5 +183,17 @@ class Blockchain
             console.log("thisHash: " + this.head[i].hash);
             console.log("");
         }
+    }
+
+    checkValidity()
+    {
+        for (var i = 1; i < this.head.length - 1; i++)
+        {
+            if (this.head[i].hash != this.head[i + 1].previousHash)
+            {
+                console.log("Blockchain is invalid");
+            }
+        }
+        console.log("Blockchain is valid");
     }
 }

@@ -6,11 +6,22 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <script language="JavaScript" src="blockchain/blockchain.js"></script>
     <script language="JavaScript">
-        var t = new Blockchain();
-        t.pushBlock(new Block(new Date().toLocaleString(), new Transaction("Alice", "Bob", 10)));
-        t.pushBlock(new Block(new Date().toLocaleString(), new Transaction("Bob", "Carol", 5)));
-        t.pushBlock(new Block(new Date().toLocaleString(), new Transaction("Carol", "Alice", 5)));
-        t.printAll();
+        var masterBlockChain = new Blockchain();
+
+        var block = new Block(new Date().toLocaleString(), new Transaction("Alice", "Bob", 10));
+        block.proofOfWork(masterBlockChain.miningDifficulty);
+        masterBlockChain.pushBlock(block);
+
+        block = new Block(new Date().toLocaleString(), new Transaction("Bob", "Carol", 5));
+        block.proofOfWork(masterBlockChain.miningDifficulty);
+        masterBlockChain.pushBlock(block);
+
+        block = new Block(new Date().toLocaleString(), new Transaction("Carol", "Alice", 5));
+        block.proofOfWork(masterBlockChain.miningDifficulty);
+        masterBlockChain.pushBlock(block);
+
+        masterBlockChain.checkValidity();
+        masterBlockChain.printAll();
     </script>
 </head>
 
