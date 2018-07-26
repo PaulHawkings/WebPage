@@ -109,6 +109,7 @@ function SHA256(s){
 
 /* Constants */
 var MININGDIFFICUTLY = 4;   // Warning: CPU performance will be decreased if the difficulty is larger than 4
+var MININGREWARD = 10;
 
 /* Main Data Structure */
 class Transaction
@@ -163,25 +164,29 @@ class Blockchain
     {
         this.head = [new Block("1/1/1970", new Transaction("", "", ""), "")];
         this.miningDifficulty = MININGDIFFICUTLY;
+        this.miningReward = MININGREWARD;
     }
 
-    pushBlock(block)
+    pushBlock(block, account)
     {
         if (block.hash.substring(0, this.miningDifficulty) != Array(this.miningDifficulty + 1).join("0"))
         {
             console.log("Proof of work failed!");
         }
         this.head.push(new Block(block.timestamp, block.transaction, this.head[this.head.length - 1].hash));
+        // Mining reward
+        this.head.push(new Block(block.timestamp, new Transaction("MASTER_BLOCKCHAIN", account.name, this.miningReward), this.head[this.head.length - 1].hash));
     }
 
     printAll()
     {
         for (var i = 1; i < this.head.length; i++)
         {
-            console.log("previousHash: " + this.head[i].previousHash);
+            // TODO: Implement log level
+            // console.log("previousHash: " + this.head[i].previousHash);
             console.log(this.head[i].toString());
-            console.log("thisHash: " + this.head[i].hash);
-            console.log("");
+            // console.log("thisHash: " + this.head[i].hash);
+            // console.log("");
         }
     }
 
@@ -195,5 +200,71 @@ class Blockchain
             }
         }
         console.log("Blockchain is valid");
+    }
+
+    getBalance(name)
+    {
+        console.log("Get account balance for " + name);
+        var balance = 0;
+        for (var i = 1; i < this.head.length; i++)
+        {
+            if (this.head[i].transaction.to == name)
+            {
+                balance += this.head[i].transaction.value;
+            }
+            else if (this.head[i].transaction.from == name)
+            {
+                balance -= this.head[i].transaction.value;
+            }
+        }
+        console.log(balance);
+        return balance;
+    }
+}
+
+class PendingTransactions
+{
+    constructor()
+    {
+        this.head = [];
+    }
+
+    pushTransaction(transaction)
+    {
+        this.head.push(transaction);
+    }
+
+    popTransaction()
+    {
+        return this.head.shift();
+    }
+
+    printAll()
+    {
+        for (var i = 0; i < this.head.length; i++)
+        {
+            console.log(this.head[i].toString());
+        }
+    }
+}
+
+class Account
+{
+    constructor(name, id)
+    {
+        this.name = name;
+        this.id = id;
+    }
+
+    mineBlock(masterBlockChain)
+    {
+        var block = new Block(new Date().toLocaleString(), Account.pendingTransactions.popTransaction());
+        block.proofOfWork(masterBlockChain.miningDifficulty);
+        masterBlockChain.pushBlock(block, this);
+    }
+
+    transfer(account, value)
+    {
+        Account.pendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
     }
 }

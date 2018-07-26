@@ -8,19 +8,26 @@
     <script language="JavaScript">
         var masterBlockChain = new Blockchain();
 
-        var block = new Block(new Date().toLocaleString(), new Transaction("Alice", "Bob", 10));
-        block.proofOfWork(masterBlockChain.miningDifficulty);
-        masterBlockChain.pushBlock(block);
+        var alice = new Account("Alice", 1);
+        var bob = new Account("Bob", 2);
+        var carol = new Account("Carol", 3);
 
-        block = new Block(new Date().toLocaleString(), new Transaction("Bob", "Carol", 5));
-        block.proofOfWork(masterBlockChain.miningDifficulty);
-        masterBlockChain.pushBlock(block);
+        Account.pendingTransactions = new PendingTransactions();
+        alice.transfer(bob, 0);
+        bob.transfer(carol, 0);
+        carol.transfer(alice, 0);
 
-        block = new Block(new Date().toLocaleString(), new Transaction("Carol", "Alice", 5));
-        block.proofOfWork(masterBlockChain.miningDifficulty);
-        masterBlockChain.pushBlock(block);
+        alice.mineBlock(masterBlockChain);
+        alice.mineBlock(masterBlockChain);
+        alice.mineBlock(masterBlockChain);
+        alice.transfer(bob, 10);
+        bob.mineBlock(masterBlockChain);
 
         masterBlockChain.checkValidity();
+        masterBlockChain.getBalance(alice.name);
+        masterBlockChain.getBalance(bob.name);
+        masterBlockChain.getBalance(carol.name);
+        console.log("");
         masterBlockChain.printAll();
     </script>
 </head>
