@@ -108,8 +108,20 @@ function SHA256(s){
 }
 
 /* Constants */
-var MININGDIFFICUTLY = 4;   // Warning: CPU performance will be decreased if the difficulty is larger than 4
+var MININGDIFFICUTLY = 2;   // Warning: CPU performance will be decreased if the difficulty is larger than 4
 var MININGREWARD = 10;
+
+/* Helper functions */
+var NONE = 0, ESSENTIAL = 1, ERROR = 2, DEBUG = 3, INFO = 4;
+var logLevel = ERROR;
+
+function print(level, log)
+{
+    if (level <= logLevel)
+    {
+        console.log(log);
+    }
+}
 
 /* Main Data Structure */
 class Transaction
@@ -171,7 +183,7 @@ class Blockchain
     {
         if (block.hash.substring(0, this.miningDifficulty) != Array(this.miningDifficulty + 1).join("0"))
         {
-            console.log("Proof of work failed!");
+            print(ERROR, "Proof of work failed!");
         }
         this.head.push(new Block(block.timestamp, block.transaction, this.head[this.head.length - 1].hash));
         // Mining reward
@@ -182,11 +194,10 @@ class Blockchain
     {
         for (var i = 1; i < this.head.length; i++)
         {
-            // TODO: Implement log level
-            // console.log("previousHash: " + this.head[i].previousHash);
-            console.log(this.head[i].toString());
-            // console.log("thisHash: " + this.head[i].hash);
-            // console.log("");
+            print(DEBUG, "previousHash: " + this.head[i].previousHash);
+            print(ESSENTIAL, this.head[i].toString());
+            print(DEBUG, "thisHash: " + this.head[i].hash);
+            print(DEBUG, "");
         }
     }
 
@@ -196,28 +207,30 @@ class Blockchain
         {
             if (this.head[i].hash != this.head[i + 1].previousHash)
             {
-                console.log("Blockchain is invalid");
+                print(ERROR, "Blockchain is invalid");
             }
         }
-        console.log("Blockchain is valid");
+        print(INFO, "Blockchain is valid");
     }
 
     getBalance(name)
     {
-        console.log("Get account balance for " + name);
+        print(INFO, "Get account balance for " + name);
         var balance = 0;
         for (var i = 1; i < this.head.length; i++)
         {
             if (this.head[i].transaction.to == name)
             {
+                print(DEBUG, "+ " + this.head[i].transaction.value);
                 balance += this.head[i].transaction.value;
             }
             else if (this.head[i].transaction.from == name)
             {
+                print(DEBUG, "- " + this.head[i].transaction.value);
                 balance -= this.head[i].transaction.value;
             }
         }
-        console.log(balance);
+        print(ESSENTIAL, name + ": " + balance);
         return balance;
     }
 }
@@ -243,7 +256,7 @@ class PendingTransactions
     {
         for (var i = 0; i < this.head.length; i++)
         {
-            console.log(this.head[i].toString());
+            print(ESSENTIAL, this.head[i].toString());
         }
     }
 }
@@ -265,6 +278,7 @@ class Account
 
     transfer(account, value)
     {
+        print(INFO, "Transfer " + value + " from " + this.name + " to " + account.name);
         masterPendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
     }
 }
