@@ -6,22 +6,15 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <script language="JavaScript" src="blockchain/blockchain.js"></script>
     <script language="JavaScript">
-        var masterBlockChain = new Blockchain();
-
-        var alice = new Account("Alice", 1);
-        var bob = new Account("Bob", 2);
-        var carol = new Account("Carol", 3);
-
-        Account.pendingTransactions = new PendingTransactions();
         alice.transfer(bob, 0);
         bob.transfer(carol, 0);
         carol.transfer(alice, 0);
 
-        alice.mineBlock(masterBlockChain);
-        alice.mineBlock(masterBlockChain);
-        alice.mineBlock(masterBlockChain);
+        alice.mineBlock();
+        alice.mineBlock();
+        alice.mineBlock();
         alice.transfer(bob, 10);
-        bob.mineBlock(masterBlockChain);
+        bob.mineBlock();
 
         masterBlockChain.checkValidity();
         masterBlockChain.getBalance(alice.name);

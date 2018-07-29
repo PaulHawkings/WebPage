@@ -256,15 +256,23 @@ class Account
         this.id = id;
     }
 
-    mineBlock(masterBlockChain)
+    mineBlock()
     {
-        var block = new Block(new Date().toLocaleString(), Account.pendingTransactions.popTransaction());
+        var block = new Block(new Date().toLocaleString(), masterPendingTransactions.popTransaction());
         block.proofOfWork(masterBlockChain.miningDifficulty);
         masterBlockChain.pushBlock(block, this);
     }
 
     transfer(account, value)
     {
-        Account.pendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
+        masterPendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
     }
 }
+
+/* Static global variables */
+var masterBlockChain = new Blockchain();
+var masterPendingTransactions = new PendingTransactions();
+
+var alice = new Account("Alice", 1);
+var bob = new Account("Bob", 2);
+var carol = new Account("Carol", 3);
