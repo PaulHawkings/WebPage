@@ -6,22 +6,57 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <script language="JavaScript" src="blockchain/blockchain.js"></script>
     <script language="JavaScript">
-        alice.transfer(bob, 0);
-        bob.transfer(carol, 0);
-        carol.transfer(alice, 0);
+        // alice.transfer(bob, 0);
+        // bob.transfer(carol, 0);
+        // carol.transfer(alice, 0);
 
-        alice.mineBlock();
-        alice.mineBlock();
-        alice.mineBlock();
-        alice.transfer(bob, 10);
-        bob.mineBlock();
+        // alice.mineBlock();
+        // alice.mineBlock();
+        // alice.mineBlock();
+        // alice.transfer(bob, 10);
+        // bob.mineBlock();
 
-        masterBlockChain.checkValidity();
-        masterBlockChain.getBalance(alice.name);
-        masterBlockChain.getBalance(bob.name);
-        masterBlockChain.getBalance(carol.name);
-        console.log("");
-        masterBlockChain.printAll();
+        // masterBlockChain.checkValidity();
+        // masterBlockChain.getBalance(alice.name);
+        // masterBlockChain.getBalance(bob.name);
+        // masterBlockChain.getBalance(carol.name);
+        // console.log("");
+        // masterBlockChain.printAll();
+
+        window.onload = function ()
+        {
+            document.getElementById("alice_transfer").addEventListener("click", function()
+            {
+                alice.transfer(document.getElementById("alice_to").value, document.getElementById("alice_value").value);
+            }, false);
+            document.getElementById("alice_mine").addEventListener("click", function()
+            {
+                alice.mineBlock();
+            }, false);
+
+            document.getElementById("bob_transfer").addEventListener("click", function()
+            {
+                bob.transfer(document.getElementById("bob_to").value, document.getElementById("bob_value").value);
+            }, false);
+            document.getElementById("bob_mine").addEventListener("click", function()
+            {
+                bob.mineBlock();
+            }, false);
+
+            document.getElementById("carol_transfer").addEventListener("click", function()
+            {
+                carol.transfer(document.getElementById("carol_to").value, document.getElementById("carol_value").value);
+            }, false);
+            document.getElementById("carol_mine").addEventListener("click", function()
+            {
+                carol.mineBlock();
+            }, false);
+
+            document.getElementById("printBlockchain").addEventListener("click", function()
+            {
+                masterBlockChain.printAll();
+            }, false);
+        }
     </script>
 </head>
 
@@ -40,6 +75,44 @@
         </div>
     </nav>
 
+    <h1 style="color:white;">Alice</h1>
+    <input type="string" id="alice_to" placeholder="to" step="0.1"/>
+    <br/>
+    <input type="number" id="alice_value" placeholder="value" step="0.1"/>
+    <br/>
+    <button type="button" id="alice_transfer">Transfer</button>
+    <br/>
+    <button type="button" id="alice_mine">Mine Block</button>
+    <br/>
+
+    <h1 style="color:white;">Bob</h1>
+    <input type="string" id="bob_to" placeholder="to" step="0.1"/>
+    <br/>
+    <input type="number" id="bob_value" placeholder="value" step="0.1"/>
+    <br/>
+    <button type="button" id="bob_transfer">Transfer</button>
+    <br/>
+    <br/>
+    <button type="button" id="bob_mine">Mine Block</button>
+    <br/>
+
+    <h1 style="color:white;">Carol</h1>
+    <input type="string" id="carol_to" placeholder="to" step="0.1"/>
+    <br/>
+    <input type="number" id="carol_value" placeholder="value" step="0.1"/>
+    <br/>
+    <button type="button" id="carol_transfer">Transfer</button>
+    <br/>
+    <br/>
+    <button type="button" id="carol_mine">Mine Block</button>
+    <br/>
+
+    <br/>
+    <button type="button" id="printBlockchain">Print Blockchain</button>
+
+    <br/>
+    <br/>
+    <br/>
     <span style="font-size: 10px; color: Grey">This website is made for educational purpose only. I DO NOT own the image, sound effect or other resources on this website.</span>
 </body>
 
