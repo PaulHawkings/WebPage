@@ -192,6 +192,10 @@ class Blockchain
 
     printAll()
     {
+        if (this.head.length == 1)
+        {
+            print(ESSENTIAL, "Blockchain is empty");
+        }
         for (var i = 1; i < this.head.length; i++)
         {
             print(DEBUG, "previousHash: " + this.head[i].previousHash);
@@ -230,7 +234,7 @@ class Blockchain
                 balance -= this.head[i].transaction.value;
             }
         }
-        print(ESSENTIAL, name + ": " + balance);
+        print(INFO, name + ": " + balance);
         return balance;
     }
 }
@@ -242,6 +246,11 @@ class PendingTransactions
         this.head = [];
     }
 
+    getLength()
+    {
+        return this.head.length;
+    }
+
     pushTransaction(transaction)
     {
         this.head.push(transaction);
@@ -249,7 +258,10 @@ class PendingTransactions
 
     popTransaction()
     {
-        return this.head.shift();
+        if (this.head.length > 0)
+        {
+            return this.head.shift();
+        }
     }
 
     printAll()
@@ -271,15 +283,29 @@ class Account
 
     mineBlock()
     {
-        var block = new Block(new Date().toLocaleString(), masterPendingTransactions.popTransaction());
-        block.proofOfWork(masterBlockChain.miningDifficulty);
-        masterBlockChain.pushBlock(block, this);
+        if (masterPendingTransactions.getLength() > 0)
+        {
+            var block = new Block(new Date().toLocaleString(), masterPendingTransactions.popTransaction());
+            block.proofOfWork(masterBlockChain.miningDifficulty);
+            masterBlockChain.pushBlock(block, this);
+        }
+        else
+        {
+            print(ERROR, "No pending transaction");
+        }
     }
 
     transfer(account, value)
     {
-        print(INFO, "Transfer " + value + " from " + this.name + " to " + account.name);
-        masterPendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
+        if (masterBlockChain.getBalance(this.name) < value)
+        {
+            print(ERROR, "Insufficient fund in account")
+        }
+        else
+        {
+            print(INFO, "Transfer " + value + " from " + this.name + " to " + account.name);
+            masterPendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
+        }
     }
 }
 
