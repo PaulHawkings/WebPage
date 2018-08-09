@@ -76,7 +76,10 @@
     </nav>
 
     <h1 style="color:white;">Alice</h1>
-    <input type="string" id="alice_to" placeholder="to" step="0.1"/>
+    <select id="alice_to">
+        <option value="Bob">Bob</option>
+        <option value="Carol">Carol</option>
+    </select>
     <br/>
     <input type="number" id="alice_value" placeholder="value" step="0.1"/>
     <br/>
@@ -86,23 +89,27 @@
     <br/>
 
     <h1 style="color:white;">Bob</h1>
-    <input type="string" id="bob_to" placeholder="to" step="0.1"/>
+    <select id="bob_to">
+        <option value="Alice">Alice</option>
+        <option value="Carol">Carol</option>
+    </select>
     <br/>
     <input type="number" id="bob_value" placeholder="value" step="0.1"/>
     <br/>
     <button type="button" id="bob_transfer">Transfer</button>
     <br/>
-    <br/>
     <button type="button" id="bob_mine">Mine Block</button>
     <br/>
 
     <h1 style="color:white;">Carol</h1>
-    <input type="string" id="carol_to" placeholder="to" step="0.1"/>
+    <select id="carol_to">
+        <option value="Alice">Alice</option>
+        <option value="Bob">Bob</option>
+    </select>
     <br/>
     <input type="number" id="carol_value" placeholder="value" step="0.1"/>
     <br/>
     <button type="button" id="carol_transfer">Transfer</button>
-    <br/>
     <br/>
     <button type="button" id="carol_mine">Mine Block</button>
     <br/>

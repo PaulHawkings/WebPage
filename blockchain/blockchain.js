@@ -295,7 +295,7 @@ class Account
         }
     }
 
-    transfer(account, value)
+    transfer(accountName, value)
     {
         if (masterBlockChain.getBalance(this.name) < value)
         {
@@ -303,8 +303,8 @@ class Account
         }
         else
         {
-            print(INFO, "Transfer " + value + " from " + this.name + " to " + account.name);
-            masterPendingTransactions.pushTransaction(new Transaction(this.name, account.name, value));
+            print(INFO, "Transfer " + value + " from " + this.name + " to " + accountName);
+            masterPendingTransactions.pushTransaction(new Transaction(this.name, accountName, value));
         }
     }
 }
