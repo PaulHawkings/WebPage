@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="blockchain/stylesheet.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <script language="JavaScript" src="blockchain/blockchain.js"></script>
@@ -28,6 +29,7 @@
             document.getElementById("alice_transfer").addEventListener("click", function()
             {
                 alice.transfer(document.getElementById("alice_to").value, document.getElementById("alice_value").value);
+                document.getElementById("alice_value").value = "";
             }, false);
             document.getElementById("alice_mine").addEventListener("click", function()
             {
@@ -37,6 +39,7 @@
             document.getElementById("bob_transfer").addEventListener("click", function()
             {
                 bob.transfer(document.getElementById("bob_to").value, document.getElementById("bob_value").value);
+                document.getElementById("bob_value").value = "";
             }, false);
             document.getElementById("bob_mine").addEventListener("click", function()
             {
@@ -46,6 +49,7 @@
             document.getElementById("carol_transfer").addEventListener("click", function()
             {
                 carol.transfer(document.getElementById("carol_to").value, document.getElementById("carol_value").value);
+                document.getElementById("carol_value").value = "";
             }, false);
             document.getElementById("carol_mine").addEventListener("click", function()
             {
@@ -54,7 +58,8 @@
 
             document.getElementById("printBlockchain").addEventListener("click", function()
             {
-                masterBlockChain.printAll();
+                updateBalance();
+                document.getElementById("blockchain_log").innerHTML = masterBlockChain.printAll()
             }, false);
         }
     </script>
@@ -75,47 +80,90 @@
         </div>
     </nav>
 
-    <h1 style="color:white;">Alice</h1>
-    <select id="alice_to">
-        <option value="Bob">Bob</option>
-        <option value="Carol">Carol</option>
-    </select>
-    <br/>
-    <input type="number" id="alice_value" placeholder="value" step="0.1"/>
-    <br/>
-    <button type="button" id="alice_transfer">Transfer</button>
-    <br/>
-    <button type="button" id="alice_mine">Mine Block</button>
-    <br/>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h1 style="color:white;">Alice</h1>
+            <img src="blockchain/Alice.png" alt="Alice">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3 style="color:white;">Transfer</h3>
+                    <input type="number" id="alice_value" placeholder="value" step="0.1"/>
+                    <h3 style="color:white;">To</h3>
+                    <select id="alice_to">
+                        <option value="Bob">Bob</option>
+                        <option value="Carol">Carol</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button type="button" id="alice_transfer">Transfer</button>
+                </div>
+                <div class="grid-item">
+                    <br/>
+                    <h3 style="color:white;">Balance:</h3>
+                    <h3 style="color:white;" id="alice_balance">0</h3>
+                    <br/>
+                    <button type="button" id="alice_mine">Mine Block</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <h1 style="color:white;">Bob</h1>
+            <img src="blockchain/Bob.png" alt="Bob">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3 style="color:white;">Transfer</h3>
+                    <input type="number" id="bob_value" placeholder="value" step="0.1"/>
+                    <h3 style="color:white;">To</h3>
+                    <select id="bob_to">
+                        <option value="Alice">Alice</option>
+                        <option value="Carol">Carol</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button type="button" id="bob_transfer">Transfer</button>
+                </div>
+                <div class="grid-item">
+                    <br/>
+                    <h3 style="color:white;">Balance:</h3>
+                    <h3 style="color:white;" id="bob_balance">0</h3>
+                    <br/>
+                    <button type="button" id="bob_mine">Mine Block</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <h1 style="color:white;">Carol</h1>
+            <img src="blockchain/Carol.png" alt="Carol">
+            <div class="grid-container">
+                <div class="grid-item">
+                    <h3 style="color:white;">Transfer</h3>
+                    <input type="number" id="carol_value" placeholder="value" step="0.1"/>
+                    <h3 style="color:white;">To</h3>
+                    <select id="carol_to">
+                        <option value="Alice">Alice</option>
+                        <option value="Bob">Bob</option>
+                    </select>
+                    <br/>
+                    <br/>
+                    <button type="button" id="carol_transfer">Transfer</button>
+                </div>
+                <div class="grid-item">
+                    <br/>
+                    <h3 style="color:white;">Balance:</h3>
+                    <h3 style="color:white;" id="carol_balance">0</h3>
+                    <br/>
+                    <button type="button" id="carol_mine">Mine Block</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h1 style="color:white;">Bob</h1>
-    <select id="bob_to">
-        <option value="Alice">Alice</option>
-        <option value="Carol">Carol</option>
-    </select>
-    <br/>
-    <input type="number" id="bob_value" placeholder="value" step="0.1"/>
-    <br/>
-    <button type="button" id="bob_transfer">Transfer</button>
-    <br/>
-    <button type="button" id="bob_mine">Mine Block</button>
-    <br/>
 
-    <h1 style="color:white;">Carol</h1>
-    <select id="carol_to">
-        <option value="Alice">Alice</option>
-        <option value="Bob">Bob</option>
-    </select>
-    <br/>
-    <input type="number" id="carol_value" placeholder="value" step="0.1"/>
-    <br/>
-    <button type="button" id="carol_transfer">Transfer</button>
-    <br/>
-    <button type="button" id="carol_mine">Mine Block</button>
-    <br/>
 
     <br/>
     <button type="button" id="printBlockchain">Print Blockchain</button>
+
+    <textarea id="blockchain_log" rows="8" style="width:100%" readonly></textarea>
 
     <br/>
     <br/>

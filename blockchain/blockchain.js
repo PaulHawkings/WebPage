@@ -130,7 +130,14 @@ class Transaction
     {
         this.from = from;
         this.to = to;
-        this.value = value;
+        if (!isNaN(parseFloat(value)) && isFinite(value))
+        {
+            this.value = value;
+        }
+        else
+        {
+            print(ERROR, "Invalid arguments");
+        }
     }
 
     toString()
@@ -174,7 +181,7 @@ class Blockchain
 {
     constructor()
     {
-        this.head = [new Block("1/1/1970", new Transaction("", "", ""), "")];
+        this.head = [new Block("1/1/1970", new Transaction("", "", 0), "")];
         this.miningDifficulty = MININGDIFFICUTLY;
         this.miningReward = MININGREWARD;
     }
@@ -192,9 +199,11 @@ class Blockchain
 
     printAll()
     {
+        var log = "";
         if (this.head.length == 1)
         {
             print(ESSENTIAL, "Blockchain is empty");
+            log = "Blockchain is empty";
         }
         for (var i = 1; i < this.head.length; i++)
         {
@@ -202,7 +211,9 @@ class Blockchain
             print(ESSENTIAL, this.head[i].toString());
             print(DEBUG, "thisHash: " + this.head[i].hash);
             print(DEBUG, "");
+            log += this.head[i].toString() + "\n";
         }
+        return log;
     }
 
     checkValidity()
@@ -226,12 +237,12 @@ class Blockchain
             if (this.head[i].transaction.to == name)
             {
                 print(DEBUG, "+ " + this.head[i].transaction.value);
-                balance += this.head[i].transaction.value;
+                balance += parseInt(this.head[i].transaction.value);
             }
             else if (this.head[i].transaction.from == name)
             {
                 print(DEBUG, "- " + this.head[i].transaction.value);
-                balance -= this.head[i].transaction.value;
+                balance -= parseInt(this.head[i].transaction.value);
             }
         }
         print(INFO, name + ": " + balance);
@@ -307,6 +318,16 @@ class Account
             masterPendingTransactions.pushTransaction(new Transaction(this.name, accountName, value));
         }
     }
+}
+
+function updateBalance()
+{
+    var aliceBalance = masterBlockChain.getBalance("Alice");
+    var bobBalance = masterBlockChain.getBalance("Bob");
+    var carolBalance = masterBlockChain.getBalance("Carol");
+    document.getElementById("alice_balance").innerHTML = aliceBalance;
+    document.getElementById("bob_balance").innerHTML = bobBalance;
+    document.getElementById("carol_balance").innerHTML = carolBalance;
 }
 
 /* Static global variables */
