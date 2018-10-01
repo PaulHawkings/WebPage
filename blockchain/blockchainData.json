@@ -1,0 +1,15 @@
+{
+    "blockchain": [
+        {
+            "timestamp": "",
+            "transaction": {
+                "from": "",
+                "to": "",
+                "value": 0
+            },
+            "previousHash": "",
+            "hash": "",
+            "nonce": ""
+        }
+    ]
+}

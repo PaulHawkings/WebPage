@@ -123,6 +123,13 @@ function print(level, log)
     }
 }
 
+function ayncHttpRequest(method, url, data)
+{
+    var request = new XMLHttpRequest();
+    request.open(method, url, true);
+    request.send(data);
+}
+
 /* Main Data Structure */
 class Transaction
 {
@@ -199,6 +206,34 @@ class Blockchain
         var reward = new Block(block.timestamp, new Transaction("MASTER_BLOCKCHAIN", account.name, this.miningReward), this.head[this.head.length - 1].hash);
         reward.proofOfWork(this.head[masterBlockChain.head.length - 1].hash, this.miningDifficulty);
         this.head.push(reward);
+
+        // Transaction block
+        var transBlock = JSON.stringify({
+            timestamp: block.timestamp,
+            transaction: {
+                from: block.transaction.from,
+                to: block.transaction.to,
+                value: block.transaction.value
+            },
+            previousHash: block.previousHash,
+            hash: block.calHash(),
+            nonce: block.nonce
+        });
+        ayncHttpRequest("POST", "blockchain/blockchainAction.php", transBlock);
+
+        // Mining reward
+        var rewardBlock = JSON.stringify({
+            timestamp: reward.timestamp,
+            transaction: {
+                from: reward.transaction.from,
+                to: reward.transaction.to,
+                value: reward.transaction.value
+            },
+            previousHash: reward.previousHash,
+            hash: reward.calHash(),
+            nonce: reward.nonce
+        });
+        ayncHttpRequest("POST", "blockchain/blockchainAction.php", rewardBlock);
     }
 
     printAll()
@@ -252,6 +287,11 @@ class Blockchain
         print(INFO, name + ": " + balance);
         return balance;
     }
+
+    getMasterBlockchain()
+    {
+        ayncHttpRequest("GET", "blockchain/blockchainAction.php", null);
+    }
 }
 
 class PendingTransactions
@@ -301,7 +341,7 @@ class Account
     {
         if (masterPendingTransactions.getLength() > 0)
         {
-            var block = new Block(new Date().toLocaleString(), masterPendingTransactions.popTransaction());
+            var block = new Block(new Date().toLocaleString("en-US").replace(/\//g, '-'), masterPendingTransactions.popTransaction());
             block.proofOfWork(masterBlockChain.head[masterBlockChain.head.length - 1].hash, masterBlockChain.miningDifficulty);
             masterBlockChain.pushBlock(block, this);
         }
