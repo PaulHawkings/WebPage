@@ -108,11 +108,11 @@ function SHA256(s){
 }
 
 /* Constants */
-var MININGDIFFICUTLY = 2;   // Warning: CPU performance will be decreased if the difficulty is larger than 4
+var MININGDIFFICUTLY = 2;   // Warning: Consumes a lot of CPU power if the difficulty is larger than 4
 var MININGREWARD = 10;
 
 /* Helper functions */
-var NONE = 0, ESSENTIAL = 1, ERROR = 2, DEBUG = 3, INFO = 4;
+var NONE = 0, ESSENTIAL = 1, ERROR = 2, INFO = 3, DEBUG = 4;
 var logLevel = ERROR;
 
 function print(level, log)
@@ -148,13 +148,13 @@ class Transaction
 
 class Block
 {
-    constructor(timestamp, transaction, previousHash)
+    constructor(timestamp, transaction, previousHash, nonce = 0)
     {
         this.timestamp = timestamp;
         this.transaction = transaction;
         this.previousHash = previousHash;
+        this.nonce = nonce;
         this.hash = this.calHash();
-        this.nonce = 0;
     }
 
     calHash()
@@ -167,8 +167,9 @@ class Block
         return "Timestamp: " + this.timestamp + ", From: " + this.transaction.from + " to " + this.transaction.to + ", value: " + this.transaction.value;
     }
 
-    proofOfWork(difficulty)
+    proofOfWork(previousHash, difficulty)
     {
+        this.previousHash = previousHash;
         while(this.hash.substring(0, difficulty) != Array(difficulty + 1).join("0"))
         {
             this.nonce += 1;
@@ -192,9 +193,12 @@ class Blockchain
         {
             print(ERROR, "Proof of work failed!");
         }
-        this.head.push(new Block(block.timestamp, block.transaction, this.head[this.head.length - 1].hash));
+        this.head.push(new Block(block.timestamp, block.transaction, block.previousHash, block.nonce));
         // Mining reward
-        this.head.push(new Block(block.timestamp, new Transaction("MASTER_BLOCKCHAIN", account.name, this.miningReward), this.head[this.head.length - 1].hash));
+        // TODO: Embed the mining reward in the latest pushed block, to avoiding doing proof of work again.
+        var reward = new Block(block.timestamp, new Transaction("MASTER_BLOCKCHAIN", account.name, this.miningReward), this.head[this.head.length - 1].hash);
+        reward.proofOfWork(this.head[masterBlockChain.head.length - 1].hash, this.miningDifficulty);
+        this.head.push(reward);
     }
 
     printAll()
@@ -284,6 +288,7 @@ class PendingTransactions
     }
 }
 
+/* Account that customers use to mine blocks */
 class Account
 {
     constructor(name, id)
@@ -297,7 +302,7 @@ class Account
         if (masterPendingTransactions.getLength() > 0)
         {
             var block = new Block(new Date().toLocaleString(), masterPendingTransactions.popTransaction());
-            block.proofOfWork(masterBlockChain.miningDifficulty);
+            block.proofOfWork(masterBlockChain.head[masterBlockChain.head.length - 1].hash, masterBlockChain.miningDifficulty);
             masterBlockChain.pushBlock(block, this);
         }
         else
@@ -308,7 +313,11 @@ class Account
 
     transfer(accountName, value)
     {
-        if (masterBlockChain.getBalance(this.name) < value)
+        if (accountName == undefined || value == "")
+        {
+            print(ERROR, "Invalid arguments");
+        }
+        else if (masterBlockChain.getBalance(this.name) < value)
         {
             print(ERROR, "Insufficient fund in account")
         }
