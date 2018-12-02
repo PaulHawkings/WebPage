@@ -123,9 +123,10 @@ function print(level, log)
     }
 }
 
-function ayncHttpRequest(method, url, data)
+function ayncHttpRequest(method, url, data, callback)
 {
     var request = new XMLHttpRequest();
+    request.onreadystatechange = callback;
     request.open(method, url, true);
     request.send(data);
 }
@@ -219,7 +220,7 @@ class Blockchain
             hash: block.calHash(),
             nonce: block.nonce
         });
-        ayncHttpRequest("POST", "blockchain/blockchainAction.php", transBlock);
+        ayncHttpRequest("POST", "blockchain/blockchainAction.php", transBlock, null);
 
         // Mining reward
         var rewardBlock = JSON.stringify({
@@ -233,7 +234,7 @@ class Blockchain
             hash: reward.calHash(),
             nonce: reward.nonce
         });
-        ayncHttpRequest("POST", "blockchain/blockchainAction.php", rewardBlock);
+        ayncHttpRequest("POST", "blockchain/blockchainAction.php", rewardBlock, null);
     }
 
     printAll()
@@ -290,7 +291,7 @@ class Blockchain
 
     getMasterBlockchain()
     {
-        ayncHttpRequest("GET", "blockchain/blockchainAction.php", null);
+        ayncHttpRequest("GET", "blockchain/blockchainAction.php", null, null);
     }
 }
 
@@ -371,12 +372,39 @@ class Account
 
 function updateBalance()
 {
-    var aliceBalance = masterBlockChain.getBalance("Alice");
-    var bobBalance = masterBlockChain.getBalance("Bob");
-    var carolBalance = masterBlockChain.getBalance("Carol");
-    document.getElementById("alice_balance").innerHTML = aliceBalance;
-    document.getElementById("bob_balance").innerHTML = bobBalance;
-    document.getElementById("carol_balance").innerHTML = carolBalance;
+    ayncHttpRequest("GET", "blockchain/blockchainAction.php?usr=Alice", null, 
+        function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                document.getElementById("alice_balance").innerHTML = this.responseText;
+            }
+        });
+
+    // ayncHttpRequest("GET", "blockchain/blockchainAction.php?usr=Bob", null, 
+    //     function()
+    //     {
+    //         if (this.readyState == 4 && this.status == 200)
+    //         {
+    //             document.getElementById("bob_balance").innerHTML = this.responseText;
+    //         }
+    //     });
+
+    // ayncHttpRequest("GET", "blockchain/blockchainAction.php?usr=Carol", null, 
+    //     function()
+    //     {
+    //         if (this.readyState == 4 && this.status == 200)
+    //         {
+    //             document.getElementById("carol_balance").innerHTML = this.responseText;
+    //         }
+    //     });
+
+    // var aliceBalance = masterBlockChain.getBalance("Alice");
+    // var bobBalance = masterBlockChain.getBalance("Bob");
+    // var carolBalance = masterBlockChain.getBalance("Carol");
+    // document.getElementById("alice_balance").innerHTML = aliceBalance;
+    // document.getElementById("bob_balance").innerHTML = bobBalance;
+    // document.getElementById("carol_balance").innerHTML = carolBalance;
 }
 
 /* Static global variables */
